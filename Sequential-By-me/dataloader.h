@@ -1,7 +1,5 @@
 #include <vector>
-#include <random>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 
 //Since MNIST files are in special binary format, we can skip opencv and stuff and use c++ only.

@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# FILES AND FOLDERS
+/Sequential - draft
+/Tests
+
 # Compiled Object files
 *.slo
 *.lo
