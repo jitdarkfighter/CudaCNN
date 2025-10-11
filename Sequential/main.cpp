@@ -6,6 +6,7 @@
 #include "layers.h"
 #include "dataloader.h"
 #include "cnn.h"
+#include <omp.h>
 
 // Clean training function using CNN's built-in methods
 void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
@@ -28,6 +29,7 @@ void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
 int main() {
     std::cout << "Loading MNIST dataset..." << std::endl;
     
+    double start_time = omp_get_wtime();
     // Load training data
     MNISTData train_data = loadMNISTImages("../train-images-idx3-ubyte");
     std::vector<int> train_labels = loadMNISTLabels("../train-labels-idx1-ubyte");
@@ -131,12 +133,13 @@ int main() {
         
         std::cout << std::endl;
     }
-
+    double end_time = omp_get_wtime();
+    std::cout << "Total training time: " << (end_time - start_time) << " seconds" << std::endl;
     std::cout << "Training completed!" << std::endl;
     
     // Save the trained model
-    std::cout << "Saving trained model..." << std::endl;
-    
+    std::cout << "Trained model saved" << std::endl;
+
     std::ofstream model_file("smolCNN.bin", std::ios::binary);
     if (model_file.is_open()) {
         // Save C1 weights and biases
