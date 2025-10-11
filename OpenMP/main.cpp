@@ -41,7 +41,6 @@ int main(int argc, char* argv[]) {
     }
     
     omp_set_num_threads(num_threads);
-    
     std::cout << "OpenMP Configuration:" << std::endl;
     std::cout << "Maximum threads available: " << omp_get_max_threads() << std::endl;
     std::cout << "Using " << num_threads << " threads for training" << std::endl;
@@ -52,19 +51,19 @@ int main(int argc, char* argv[]) {
     // Load training data
     MNISTData train_data = loadMNISTImages("../train-images-idx3-ubyte");
     std::vector<int> train_labels = loadMNISTLabels("../train-labels-idx1-ubyte");
-
+    
     // Load test data
     MNISTData test_data = loadMNISTImages("../t10k-images-idx3-ubyte");
     std::vector<int> test_labels = loadMNISTLabels("../t10k-labels-idx1-ubyte");
-
+    
     if (train_data.num_images == 0 || train_labels.empty()) {
         std::cerr << "Failed to load MNIST dataset. Please ensure the following files are in the current directory:" << std::endl;
         return -1;
     }
-
+    
     std::cout << "Loaded " << train_data.num_images << " training images" << std::endl;
     std::cout << "Loaded " << test_data.num_images << " test images" << std::endl;
-
+    
     // Initialize CNN
     CNN cnn;
     
@@ -72,7 +71,8 @@ int main(int argc, char* argv[]) {
     const int epochs = 5;
     const int batch_size = 100;
     const int num_batches = train_data.num_images / batch_size;
-
+    
+    double start_time = omp_get_wtime();
     std::cout << "Starting training..." << std::endl;
     std::cout << "Epochs: " << epochs << ", Batch size: " << batch_size << std::endl;
 
@@ -154,11 +154,12 @@ int main(int argc, char* argv[]) {
         
         std::cout << std::endl;
     }
-
+    double end_time = omp_get_wtime();
+    std::cout << "Total training time: " << (end_time - start_time) << " seconds" << std::endl;
     std::cout << "Training completed!" << std::endl;
     
     // Save the trained model
-    std::cout << "Saving trained model..." << std::endl;
+    std::cout << "Trained model saved" << std::endl;
     
     std::ofstream model_file("smolCNN.bin", std::ios::binary);
     if (model_file.is_open()) {
