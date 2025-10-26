@@ -1,0 +1,60 @@
+ 󰓾 CudaCNN/OpenMP on  main [!?] via C v15.2.1-gcc took 46s 
+ 󱓞 ❯ ./main
+OpenMP Configuration:
+Maximum threads available: 16
+Using 16 threads for training
+
+Loading MNIST dataset...
+Loaded 60000 training images
+Loaded 10000 test images
+Starting training...
+Epochs: 5, Batch size: 100
+Epoch 1/5, Batch 100/600, Loss: 0.2814
+Epoch 1/5, Batch 200/600, Loss: 0.2587
+Epoch 1/5, Batch 300/600, Loss: 0.2100
+Epoch 1/5, Batch 400/600, Loss: 0.1313
+Epoch 1/5, Batch 500/600, Loss: 0.2920
+Epoch 1/5, Batch 600/600, Loss: 0.2507
+Epoch 1 completed. Average Loss: 0.3670, Training Accuracy: 95.42%
+Test Accuracy: 93.90%
+
+Epoch 2/5, Batch 100/600, Loss: 0.0619
+Epoch 2/5, Batch 200/600, Loss: 0.1255
+Epoch 2/5, Batch 300/600, Loss: 0.1288
+Epoch 2/5, Batch 400/600, Loss: 0.1296
+Epoch 2/5, Batch 500/600, Loss: 0.1727
+Epoch 2/5, Batch 600/600, Loss: 0.0754
+Epoch 2 completed. Average Loss: 0.1828, Training Accuracy: 99.20%
+Test Accuracy: 95.50%
+
+Epoch 3/5, Batch 100/600, Loss: 0.0796
+Epoch 3/5, Batch 200/600, Loss: 0.1918
+Epoch 3/5, Batch 300/600, Loss: 0.1970
+Epoch 3/5, Batch 400/600, Loss: 0.1783
+Epoch 3/5, Batch 500/600, Loss: 0.2247
+Epoch 3/5, Batch 600/600, Loss: 0.1557
+Epoch 3 completed. Average Loss: 0.1632, Training Accuracy: 99.28%
+Test Accuracy: 93.90%
+
+Epoch 4/5, Batch 100/600, Loss: 0.3273
+Epoch 4/5, Batch 200/600, Loss: 0.0338
+Epoch 4/5, Batch 300/600, Loss: 0.2760
+Epoch 4/5, Batch 400/600, Loss: 0.1149
+Epoch 4/5, Batch 500/600, Loss: 0.0684
+Epoch 4/5, Batch 600/600, Loss: 0.1048
+Epoch 4 completed. Average Loss: 0.1516, Training Accuracy: 99.35%
+Test Accuracy: 94.90%
+
+Epoch 5/5, Batch 100/600, Loss: 0.1076
+Epoch 5/5, Batch 200/600, Loss: 0.0479
+Epoch 5/5, Batch 300/600, Loss: 0.0904
+Epoch 5/5, Batch 400/600, Loss: 0.0689
+Epoch 5/5, Batch 500/600, Loss: 0.0695
+Epoch 5/5, Batch 600/600, Loss: 0.1295
+Epoch 5 completed. Average Loss: 0.1425, Training Accuracy: 99.43%
+Test Accuracy: 95.70%
+
+Total training time: 114.27 seconds
+Training completed!
+Trained model saved
+Model saved to 'trained_model.bin'

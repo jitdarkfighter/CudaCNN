@@ -9,6 +9,10 @@
 #include "dataloader.h"
 #include "cnn.h"
 
+const int EPOCHS = 5;
+const int BATCH_SIZE = 100;
+const int NUM_THREADS = 16;
+
 // Clean training function using CNN's built-in methods
 void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
     // Reset gradients before each training iteration
@@ -27,18 +31,10 @@ void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
     cnn.updateWeights();
 }
 
-int main(int argc, char* argv[]) {
-    // Set number of OpenMP threads
-    int num_threads = 4; // Default value
-    
-    // Check for command line argument for thread count
-    if (argc > 1) {
-        num_threads = std::atoi(argv[1]);
-        if (num_threads <= 0 || num_threads > omp_get_max_threads()) {
-            std::cout << "Invalid thread count. Using default: 4" << std::endl;
-            num_threads = 4;
-        }
-    }
+int main() {
+    std::cout << "Jithin Shaji (2023BCS0014)\n Alex Gijo (2023BCS0023)\n\n";
+
+    const int num_threads = NUM_THREADS;
     
     omp_set_num_threads(num_threads);
     std::cout << "OpenMP Configuration:" << std::endl;
@@ -64,22 +60,23 @@ int main(int argc, char* argv[]) {
     std::cout << "Loaded " << train_data.num_images << " training images" << std::endl;
     std::cout << "Loaded " << test_data.num_images << " test images" << std::endl;
     
+    // Training parameters
+    const int epochs = EPOCHS;
+    const int batch_size = BATCH_SIZE;
+    const int num_batches = train_data.num_images / batch_size;
+    
     // Initialize CNN
     CNN cnn;
     
-    // Training parameters
-    const int epochs = 5;
-    const int batch_size = 100;
-    const int num_batches = train_data.num_images / batch_size;
     
     double start_time = omp_get_wtime();
     std::cout << "Starting training..." << std::endl;
     std::cout << "Epochs: " << epochs << ", Batch size: " << batch_size << std::endl;
-
+    
     for (int epoch = 0; epoch < epochs; ++epoch) {
         float total_loss = 0.0f;
         int correct_predictions = 0;
-
+        
         // Shuffle training data
         std::vector<int> indices(train_data.num_images);
         std::iota(indices.begin(), indices.end(), 0);

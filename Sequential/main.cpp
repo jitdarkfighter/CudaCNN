@@ -27,6 +27,7 @@ void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
 }
 
 int main() {
+    std::cout << "Jithin Shaji (2023BCS0014)\n Alex Gijo (2023BCS0023)\n\n";
     std::cout << "Loading MNIST dataset..." << std::endl;
     
     double start_time = omp_get_wtime();

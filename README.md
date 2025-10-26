@@ -1,10 +1,5 @@
 # CudaCNN
-Implementation of CNN in C++.
-
-
-#### Pytorch Implementation
-# CudaCNN
-Implementation of CNN in C++.
+Implementation of CNN in C++ for MNIST digit classification.
 
 ## Architecture
 A simple CNN with the following layers:
@@ -17,8 +12,72 @@ A simple CNN with the following layers:
 - **Softmax Activation** (for output probabilities)
 - **Total**: ~2812 parameters
 
+## Quick Start Instructions
 
-#### Original PyTorch Implementation
+### Prerequisites
+- G++ compiler with C++11 support
+- OpenMP support (usually included with GCC)
+- MNIST dataset files (already included in project root)
+
+### Files Structure
+```
+├── train-images-idx3-ubyte    # Training images (60,000 samples)
+├── train-labels-idx1-ubyte    # Training labels
+├── t10k-images-idx3-ubyte     # Test images (10,000 samples)
+├── t10k-labels-idx1-ubyte     # Test labels
+├── Sequential/                 # Sequential implementation
+└── OpenMP/                    # Parallel implementation
+```
+
+### Running the Code
+
+#### Sequential Version
+```bash
+cd Sequential
+g++ -o main main.cpp -std=c++11 -fopenmp
+./main
+```
+
+#### OpenMP Parallel Version
+```bash
+cd OpenMP
+g++ -o main main.cpp -std=c++11 -fopenmp
+./main
+```
+
+### Modifying Hyperparameters
+
+You can easily modify training parameters by editing the constants in `main.cpp`:
+
+#### Sequential Version (`Sequential/main.cpp`)
+```cpp
+// Training parameters (around line 47)
+const int epochs = 5;           // Number of training epochs
+const int batch_size = 100;     // Batch size for training
+```
+
+#### OpenMP Version (`OpenMP/main.cpp`)
+```cpp
+// Training parameters (top of file)
+const int EPOCHS = 5;           // Number of training epochs
+const int BATCH_SIZE = 100;     // Batch size for training
+const int NUM_THREADS = 16;     // Number of OpenMP threads
+```
+
+### Expected Output
+The program will:
+1. Load MNIST dataset (60,000 training + 10,000 test images)
+2. Train the CNN for specified epochs
+3. Display training progress with loss and accuracy
+4. Show test accuracy after each epoch
+5. Save the trained model as `smolCNN.bin`
+6. Display total training time
+
+### Performance Comparison
+- **Sequential**: Runs on single thread
+- **OpenMP**: Utilizes multiple threads for faster training
+
+### Original PyTorch Implementation Reference
 ```python
 import torch
 import torch.nn as nn
@@ -33,23 +92,29 @@ class smolCNN(nn.Module):
         self.fc = nn.Linear(6 * 6 * 6, 10)
 
     def forward(self, x):
-        # Input: (batch_size, 1, 28, 28)
-        # Convolution (28x28 -> 24x24)
-        x = self.conv1(x)  # shape: (batch_size, 6, 24, 24)
+        x = self.conv1(x)  # (batch_size, 6, 24, 24)
         x = F.relu(x)
-        # Pooling (custom conv pooling: 24x24 -> 6x6)
-        x = self.pool(x)   # shape: (batch_size, 6, 6, 6)
+        x = self.pool(x)   # (batch_size, 6, 6, 6)
         x = F.relu(x)
-        # Flatten
-        x = x.view(x.size(0), -1)  # (batch_size, 6*6*6)
-        # Fully connected
-        x = self.fc(x)  # (batch_size, 10)
+        x = x.view(x.size(0), -1)  # (batch_size, 216)
+        x = self.fc(x)     # (batch_size, 10)
         return x
 ```
 
-**Parameter Count:**
-- Conv layer: 6*(5*5+1) = 156 parameters
-- Pooling Layer: 6*(6*(4*4+1)) = 486 parameters  
-- FC layer: 216*10 + 10 = 2170 parameters
-- **Total**: ~2812 parameters
+
+## Example Run Commands
+
+**Quick test with 2 epochs:**
+```bash
+# Edit main.cpp to set epochs = 2
+cd Sequential
+g++ -o main main.cpp -std=c++11 -fopenmp && ./main
+```
+
+**Parallel version with custom thread count:**
+```bash
+# Edit main.cpp to set NUM_THREADS = 8
+cd OpenMP  
+g++ -o main main.cpp -std=c++11 -fopenmp && ./main
+```
 

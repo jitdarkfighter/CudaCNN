@@ -1,0 +1,61 @@
+
+ 󰓾 CudaCNN/OpenMP on  main [!] via C v15.2.1-gcc 
+ 󱓞 ❯ ./main
+OpenMP Configuration:
+Maximum threads available: 2
+Using 2 threads for training
+
+Loading MNIST dataset...
+Loaded 60000 training images
+Loaded 10000 test images
+Starting training...
+Epochs: 5, Batch size: 100
+Epoch 1/5, Batch 100/600, Loss: 0.2491
+Epoch 1/5, Batch 200/600, Loss: 0.1879
+Epoch 1/5, Batch 300/600, Loss: 0.0984
+Epoch 1/5, Batch 400/600, Loss: 0.0831
+Epoch 1/5, Batch 500/600, Loss: 0.1688
+Epoch 1/5, Batch 600/600, Loss: 0.1211
+Epoch 1 completed. Average Loss: 0.2631, Training Accuracy: 98.26%
+Test Accuracy: 95.70%
+
+Epoch 2/5, Batch 100/600, Loss: 0.2257
+Epoch 2/5, Batch 200/600, Loss: 0.0385
+Epoch 2/5, Batch 300/600, Loss: 0.0824
+Epoch 2/5, Batch 400/600, Loss: 0.1062
+Epoch 2/5, Batch 500/600, Loss: 0.0383
+Epoch 2/5, Batch 600/600, Loss: 0.2366
+Epoch 2 completed. Average Loss: 0.1106, Training Accuracy: 99.72%
+Test Accuracy: 97.10%
+
+Epoch 3/5, Batch 100/600, Loss: 0.0832
+Epoch 3/5, Batch 200/600, Loss: 0.0411
+Epoch 3/5, Batch 300/600, Loss: 0.1123
+Epoch 3/5, Batch 400/600, Loss: 0.1221
+Epoch 3/5, Batch 500/600, Loss: 0.0396
+Epoch 3/5, Batch 600/600, Loss: 0.0445
+Epoch 3 completed. Average Loss: 0.0893, Training Accuracy: 99.79%
+Test Accuracy: 97.10%
+
+Epoch 4/5, Batch 100/600, Loss: 0.0451
+Epoch 4/5, Batch 200/600, Loss: 0.1494
+Epoch 4/5, Batch 300/600, Loss: 0.0817
+Epoch 4/5, Batch 400/600, Loss: 0.1497
+Epoch 4/5, Batch 500/600, Loss: 0.0409
+Epoch 4/5, Batch 600/600, Loss: 0.0847
+Epoch 4 completed. Average Loss: 0.0792, Training Accuracy: 99.79%
+Test Accuracy: 96.90%
+
+Epoch 5/5, Batch 100/600, Loss: 0.0781
+Epoch 5/5, Batch 200/600, Loss: 0.0320
+Epoch 5/5, Batch 300/600, Loss: 0.0537
+Epoch 5/5, Batch 400/600, Loss: 0.1578
+Epoch 5/5, Batch 500/600, Loss: 0.0302
+Epoch 5/5, Batch 600/600, Loss: 0.1477
+Epoch 5 completed. Average Loss: 0.0731, Training Accuracy: 99.85%
+Test Accuracy: 97.10%
+
+Total training time: 153.74 seconds
+Training completed!
+Trained model saved
+Model saved to 'trained_model.bin'
