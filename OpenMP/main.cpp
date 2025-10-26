@@ -11,7 +11,7 @@
 
 const int EPOCHS = 5;
 const int BATCH_SIZE = 100;
-const int NUM_THREADS = 16;
+const int NUM_THREADS = 8;
 
 // Clean training function using CNN's built-in methods
 void trainCNN(CNN& cnn, const float input[28][28], int target_label) {
